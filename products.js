@@ -1,8 +1,9 @@
 const products = [
   {
-    id: '001',
+    sku: '001',
     name: 'Kentiapalm (L)',
-    price: 39.95,
+    price: 3995,
+    currency: 'USD',
     image: '/plants/kentiapalm.png',
     rating: {
       count: 85,
@@ -10,9 +11,10 @@ const products = [
     },
   },
   {
-    id: '002',
+    sku: '002',
     name: 'Monstera Deliciosa (L)',
-    price: 59.95,
+    price: 5995,
+    currency: 'USD',
     image: '/plants/monstera-deliciosa.png',
     rating: {
       count: 137,
@@ -20,9 +22,10 @@ const products = [
     },
   },
   {
-    id: '003',
+    sku: '003',
     name: 'Alocasia Zebrina',
-    price: 29.95,
+    price: 2995,
+    currency: 'USD',
     image: '/plants/alocasia-zebrina.png',
     rating: {
       count: 104,
@@ -30,9 +33,10 @@ const products = [
     },
   },
   {
-    id: '004',
+    sku: '004',
     name: 'Cactus Euphorbia (L)',
-    price: 49.95,
+    price: 4995,
+    currency: 'USD',
     image: '/plants/euphorbia.png',
     rating: {
       count: 213,
@@ -40,9 +44,10 @@ const products = [
     },
   },
   {
-    id: '005',
+    sku: '005',
     name: 'Calathea Orbifolia',
-    price: 29.95,
+    price: 2995,
+    currency: 'USD',
     image: '/plants/calathea-orbifolia.png',
     rating: {
       count: 78,
@@ -50,9 +55,10 @@ const products = [
     },
   },
   {
-    id: '006',
+    sku: '006',
     name: 'Calathea Medallion',
-    price: 29.95,
+    price: 2995,
+    currency: 'USD',
     image: '/plants/calathea-medallion.png',
     rating: {
       count: 89,
@@ -60,9 +66,10 @@ const products = [
     },
   },
   {
-    id: '007',
+    sku: '007',
     name: 'Calathea Ornata',
-    price: 29.95,
+    price: 2995,
+    currency: 'USD',
     image: '/plants/calathea-ornata.png',
     rating: {
       count: 271,
@@ -70,9 +77,10 @@ const products = [
     },
   },
   {
-    id: '008',
+    sku: '008',
     name: 'Zamioculcas (L)',
-    price: 39.95,
+    price: 3995,
+    currency: 'USD',
     image: '/plants/zamioculcas.png',
     rating: {
       count: 78,

@@ -1,12 +1,16 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { useShoppingCart } from '@/hooks/use-shopping-cart';
+import { formatCurrency } from '@/lib/utils';
 import { Rating } from '@/components/index';
 import { HeartIcon as EmptyHeartIcon } from '@heroicons/react/outline';
 import { HeartIcon } from '@heroicons/react/solid';
 
-import products from '../products';
+import products from 'products';
 
 export default function Home() {
+  const { addItem } = useShoppingCart();
+
   return (
     <>
       <Head>
@@ -24,7 +28,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {products.map(product => (
             <div
-              key={product.id}
+              key={product.sku}
               className="border rounded-md cursor-pointer p-6 group relative"
             >
               {/* Add to whishlist button */}
@@ -60,12 +64,14 @@ export default function Home() {
               <div className="mt-4 flex items-center justify-between space-x-2">
                 <div>
                   <p className="text-gray-500">Price</p>
-                  <p className="text-lg font-semibold">$ {product.price}</p>
+                  <p className="text-lg font-semibold">
+                    {formatCurrency(product.price, product.currency)}
+                  </p>
                 </div>
 
                 <button
                   type="button"
-                  onClick={null}
+                  onClick={() => addItem(product)}
                   className="border rounded-lg py-1 px-4 hover:bg-rose-500 hover:text-white transition-colors"
                 >
                   Add to cart

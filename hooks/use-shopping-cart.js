@@ -8,20 +8,20 @@ const initialCartValues = {
   totalPrice: 0,
 };
 
-const addItem = (state = {}, product = null, count = 0) => {
-  if (count <= 0 || !product) return state;
+const addItem = (state = {}, product = null, quantity = 0) => {
+  if (quantity <= 0 || !product) return state;
 
-  let entry = state?.cartDetails?.[product.sku];
+  let entry = state?.cartDetails?.[product.id];
 
   // Update item
   if (entry) {
-    entry.count += count;
+    entry.quantity += quantity;
   }
   // Add item
   else {
     entry = {
       ...product,
-      count,
+      quantity,
     };
   }
 
@@ -29,27 +29,30 @@ const addItem = (state = {}, product = null, count = 0) => {
     ...state,
     cartDetails: {
       ...state.cartDetails,
-      [product.sku]: entry,
+      [product.id]: entry,
     },
-    cartCount: Math.max(0, state.cartCount + count),
-    totalPrice: Math.max(state.totalPrice + product.price * count),
+    cartCount: Math.max(0, state.cartCount + quantity),
+    totalPrice: Math.max(state.totalPrice + product.price * quantity),
   };
 };
 
-const removeItem = (state = {}, product = null, count = 0) => {
-  if (count <= 0 || !product) return state;
+const removeItem = (state = {}, product = null, quantity = 0) => {
+  if (quantity <= 0 || !product) return state;
 
-  let entry = state?.cartDetails?.[product.sku];
+  let entry = state?.cartDetails?.[product.id];
 
   if (entry) {
     // Remove item
-    if (count >= entry.count) {
-      const { [product.sku]: sku, ...details } = state.cartDetails;
+    if (quantity >= entry.quantity) {
+      const { [product.id]: id, ...details } = state.cartDetails;
       return {
         ...state,
         cartDetails: details,
-        cartCount: Math.max(0, state.cartCount - entry.count),
-        totalPrice: Math.max(0, state.totalPrice - product.price * entry.count),
+        cartCount: Math.max(0, state.cartCount - entry.quantity),
+        totalPrice: Math.max(
+          0,
+          state.totalPrice - product.price * entry.quantity
+        ),
       };
     }
     // Update item
@@ -58,13 +61,13 @@ const removeItem = (state = {}, product = null, count = 0) => {
         ...state,
         cartDetails: {
           ...state.cartDetails,
-          [product.sku]: {
+          [product.id]: {
             ...entry,
-            count: entry.count - count,
+            quantity: entry.quantity - quantity,
           },
         },
-        cartCount: Math.max(0, state.cartCount - count),
-        totalPrice: Math.max(0, state.totalPrice - product.price * count),
+        cartCount: Math.max(0, state.cartCount - quantity),
+        totalPrice: Math.max(0, state.totalPrice - product.price * quantity),
       };
     }
   } else {
@@ -79,9 +82,9 @@ const clearCart = () => {
 const cartReducer = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
-      return addItem(state, action.product, action.count);
+      return addItem(state, action.product, action.quantity);
     case 'REMOVE_ITEM':
-      return removeItem(state, action.product, action.count);
+      return removeItem(state, action.product, action.quantity);
     case 'CLEAR_CART':
       return clearCart();
     default:
@@ -119,11 +122,11 @@ export const CartProvider = ({ currency = 'USD', children = null }) => {
 export const useShoppingCart = () => {
   const [cart, dispatch] = useContext(CartContext);
 
-  const addItem = (product, count = 1) =>
-    dispatch({ type: 'ADD_ITEM', product, count });
+  const addItem = (product, quantity = 1) =>
+    dispatch({ type: 'ADD_ITEM', product, quantity });
 
-  const removeItem = (product, count = 1) =>
-    dispatch({ type: 'REMOVE_ITEM', product, count });
+  const removeItem = (product, quantity = 1) =>
+    dispatch({ type: 'REMOVE_ITEM', product, quantity });
 
   const clearCart = () => dispatch({ type: 'CLEAR_CART' });
 

@@ -13,7 +13,7 @@ const ProductCard = props => {
   };
 
   return (
-    <Link href={`/products/${props.sku}`}>
+    <Link href={`/products/${props.id}`}>
       <a className="border rounded-md cursor-pointer p-6 group">
         {/* Product's image */}
         <div className="relative w-full h-64 group-hover:transform group-hover:scale-125 group-hover:ease-in-out group-hover:duration-500">

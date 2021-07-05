@@ -1,6 +1,6 @@
 const products = [
   {
-    sku: '001',
+    id: 'price_1J9siqEy9j6mAC9e2KfHqYwT',
     name: 'Kentiapalm (L)',
     price: 3995,
     currency: 'USD',
@@ -11,7 +11,7 @@ const products = [
     },
   },
   {
-    sku: '002',
+    id: 'price_1J9t3sEy9j6mAC9eWlXZCPBY',
     name: 'Monstera Deliciosa (L)',
     price: 5995,
     currency: 'USD',
@@ -22,7 +22,7 @@ const products = [
     },
   },
   {
-    sku: '003',
+    id: 'price_1J9st1Ey9j6mAC9eGlFOTTmY',
     name: 'Alocasia Zebrina',
     price: 2995,
     currency: 'USD',
@@ -33,7 +33,7 @@ const products = [
     },
   },
   {
-    sku: '004',
+    id: 'price_1J9stNEy9j6mAC9eyElpy1ML',
     name: 'Cactus Euphorbia (L)',
     price: 4995,
     currency: 'USD',
@@ -44,7 +44,7 @@ const products = [
     },
   },
   {
-    sku: '005',
+    id: 'price_1J9steEy9j6mAC9eGffDz2cQ',
     name: 'Calathea Orbifolia',
     price: 2995,
     currency: 'USD',
@@ -55,7 +55,7 @@ const products = [
     },
   },
   {
-    sku: '006',
+    id: 'price_1J9stzEy9j6mAC9eBrYzI320',
     name: 'Calathea Medallion',
     price: 2995,
     currency: 'USD',
@@ -66,7 +66,7 @@ const products = [
     },
   },
   {
-    sku: '007',
+    id: 'price_1J9suEEy9j6mAC9eZ6z6D72n',
     name: 'Calathea Ornata',
     price: 2995,
     currency: 'USD',
@@ -77,7 +77,7 @@ const products = [
     },
   },
   {
-    sku: '008',
+    id: 'price_1J9suWEy9j6mAC9ekZKJRaC4',
     name: 'Zamioculcas (L)',
     price: 3995,
     currency: 'USD',

@@ -86,8 +86,8 @@ const Product = props => {
 export async function getStaticPaths() {
   return {
     // Existing posts are rendered to HTML at build time
-    paths: Object.keys(products)?.map(sku => ({
-      params: { sku },
+    paths: Object.keys(products)?.map(id => ({
+      params: { id },
     })),
     // Enable statically generating additional pages
     fallback: true,
@@ -96,7 +96,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const props = products?.find(product => product.sku === params.sku) ?? {};
+    const props = products?.find(product => product.id === params.id) ?? {};
 
     return {
       props,

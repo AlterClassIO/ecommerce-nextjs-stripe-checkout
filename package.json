@@ -9,9 +9,12 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.1",
+    "@stripe/stripe-js": "^1.15.1",
+    "axios": "^0.21.1",
     "next": "11.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "stripe": "^8.160.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",

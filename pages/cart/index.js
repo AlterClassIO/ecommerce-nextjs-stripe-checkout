@@ -39,7 +39,7 @@ const Cart = () => {
               {/* Image + Name */}
               <Link href={`/product/${product.sku}`}>
                 <a className="flex space-x-4 group">
-                  <div className="relative w-20 h-20">
+                  <div className="relative w-20 h-20 group-hover:scale-110 transition-transform">
                     <Image
                       src={product.image}
                       alt={product.name}

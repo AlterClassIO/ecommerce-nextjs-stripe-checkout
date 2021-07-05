@@ -94,6 +94,15 @@ const Cart = () => {
               </div>
             </div>
           ))}
+
+          <div className="flex justify-end border-t py-4 mt-8">
+            <p className="text-xl">
+              Total:{' '}
+              <span className="font-semibold">
+                {formatCurrency(totalPrice)}
+              </span>
+            </p>
+          </div>
         </div>
       ) : null}
     </div>

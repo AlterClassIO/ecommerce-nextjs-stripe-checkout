@@ -13,7 +13,15 @@ const Cart = () => {
       {cartCount > 0 ? (
         <>
           <h2 className="text-4xl font-semibold">Your shopping cart</h2>
-          <p className="mt-1 text-xl">{cartCount} items</p>
+          <p className="mt-1 text-xl">
+            {cartCount} items{' '}
+            <button
+              onClick={clearCart}
+              className="opacity-50 hover:opacity-100 text-base capitalize"
+            >
+              (Clear all)
+            </button>
+          </p>
         </>
       ) : (
         <>
@@ -30,14 +38,14 @@ const Cart = () => {
       )}
 
       {cartCount > 0 ? (
-        <div className="mt-12 w-full max-w-screen-lg">
+        <div className="mt-12">
           {Object.entries(cartDetails).map(([key, product]) => (
             <div
               key={key}
               className="flex justify-between space-x-4 hover:shadow-lg hover:border-opacity-50 border border-opacity-0 rounded-md p-4"
             >
               {/* Image + Name */}
-              <Link href={`/product/${product.sku}`}>
+              <Link href={`/products/${product.sku}`}>
                 <a className="flex space-x-4 group">
                   <div className="relative w-20 h-20 group-hover:scale-110 transition-transform">
                     <Image

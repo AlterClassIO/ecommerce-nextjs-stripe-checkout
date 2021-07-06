@@ -11,10 +11,10 @@ export const config = {
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
+    let event;
+
     try {
       // 1. Retrieve the event by verifying the signature using the raw body and secret
-      let event;
-
       const rawBody = await buffer(req);
       const signature = req.headers['stripe-signature'];
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     console.log('✅ Success:', event.id);
 
     // 2. Handle event type (add business logic here)
-    if (eventType === 'checkout.session.completed') {
+    if (event.type === 'checkout.session.completed') {
       console.log(`💰  Payment received!`);
     } else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);

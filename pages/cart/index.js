@@ -25,7 +25,7 @@ const Cart = () => {
       // Create Stripe checkout
       const {
         data: { id },
-      } = await axios.post('/api/create-checkout-session', {
+      } = await axios.post('/api/checkout_sessions', {
         items: Object.entries(cartDetails).map(([_, { id, quantity }]) => ({
           price: id,
           quantity,

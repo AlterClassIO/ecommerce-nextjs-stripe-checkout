@@ -5,6 +5,7 @@ import { useShoppingCart } from '@/hooks/use-shopping-cart';
 import axios from 'axios';
 import { formatCurrency } from '@/lib/utils';
 import getStripe from '@/lib/get-stripe';
+import { toast } from 'react-hot-toast';
 import {
   XCircleIcon,
   XIcon,
@@ -18,13 +19,13 @@ const Cart = () => {
   const [redirecting, setRedirecting] = useState(false);
 
   const redirectToCheckout = async () => {
-    setRedirecting(true);
+    const createSesssionAndRedirect = async () => {
+      setRedirecting(true);
 
-    try {
       // Create Stripe checkout
       const {
         data: { id },
-      } = await axios.post('/api/create-stripe-checkout', {
+      } = await axios.post('/api/create-checkout-session', {
         items: Object.entries(cartDetails).map(([_, { id, quantity }]) => ({
           price: id,
           quantity,
@@ -34,9 +35,15 @@ const Cart = () => {
       // Redirect to checkout
       const stripe = await getStripe();
       await stripe.redirectToCheckout({ sessionId: id });
-    } catch (error) {
-      setRedirecting(false);
-    }
+    };
+
+    toast.promise(createSesssionAndRedirect(), {
+      loading: 'Redirecting...',
+      error: () => {
+        setRedirecting(false);
+        return 'Something went wrong. Please try again later';
+      },
+    });
   };
 
   return (

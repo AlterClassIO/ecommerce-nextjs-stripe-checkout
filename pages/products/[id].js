@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 import { useShoppingCart } from '@/hooks/use-shopping-cart';
 import Image from 'next/image';
 import { formatCurrency } from '@/lib/utils';
@@ -9,13 +10,27 @@ import products from 'products';
 
 const Product = props => {
   const router = useRouter();
-  const { addItem } = useShoppingCart();
+  const { cartCount, addItem } = useShoppingCart();
   const [qty, setQty] = useState(1);
+  const [adding, setAdding] = useState(false);
+
+  let toastId = useRef();
 
   const handleOnAddToCart = () => {
+    setAdding(true);
+    toastId.current = toast.loading(
+      `Adding ${qty} item${qty > 1 ? 's' : ''}...`
+    );
     addItem(props, qty);
-    setQty(1);
   };
+
+  useEffect(() => {
+    setAdding(false);
+    toast.success(`${qty} ${props.name} added`, {
+      id: toastId.current,
+    });
+    setQty(1);
+  }, [cartCount]);
 
   return router.isFallback ? (
     <p className="text-center text-lg py-12">Loading...</p>
@@ -72,7 +87,8 @@ const Product = props => {
             <button
               type="button"
               onClick={handleOnAddToCart}
-              className="mt-8 border rounded py-2 px-6 bg-rose-500 hover:bg-rose-600 border-rose-500 hover:border-rose-600 focus:ring-4 focus:ring-opacity-50 focus:ring-rose-500 text-white transition-colors"
+              disabled={adding}
+              className="mt-8 border rounded py-2 px-6 bg-rose-500 hover:bg-rose-600 border-rose-500 hover:border-rose-600 focus:ring-4 focus:ring-opacity-50 focus:ring-rose-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Add to cart ({qty})
             </button>

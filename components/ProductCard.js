@@ -10,7 +10,8 @@ const ProductCard = props => {
   const { cartCount, addItem } = useShoppingCart();
   const [adding, setAdding] = useState(false);
 
-  let toastId = useRef();
+  const toastId = useRef();
+  const firstRun = useRef(true);
 
   const handleOnAddToCart = event => {
     event.preventDefault();
@@ -26,6 +27,11 @@ const ProductCard = props => {
   };
 
   useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
+
     if (adding) {
       setAdding(false);
       toast.success(`${props.name} added`, {

@@ -14,7 +14,8 @@ const Product = props => {
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
 
-  let toastId = useRef();
+  const toastId = useRef();
+  const firstRun = useRef(true);
 
   const handleOnAddToCart = () => {
     setAdding(true);
@@ -25,6 +26,11 @@ const Product = props => {
   };
 
   useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
+
     setAdding(false);
     toast.success(`${qty} ${props.name} added`, {
       id: toastId.current,

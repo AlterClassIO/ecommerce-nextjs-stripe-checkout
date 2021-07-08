@@ -36,7 +36,7 @@ const Success = () => {
         </div>
       ) : (
         <div className="py-4 px-8 rounded-md bg-gray-100 max-w-lg mx-auto">
-          <h2 className="text-4xl font-semibold flex flex-col sm:flex-row items-center space-x-1">
+          <h2 className="text-4xl font-semibold flex flex-col items-center space-x-1">
             <CheckIcon className="w-12 h-12 flex-shrink-0 text-green-600" />
             <span>Thanks for your order!</span>
           </h2>

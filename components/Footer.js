@@ -1,12 +1,17 @@
+import { HeartIcon } from '@heroicons/react/solid';
+
 const Footer = () => (
   <footer className="container xl:max-w-screen-xl mx-auto p-6 mt-8 text-center">
     <p>
-      Any questions? Contact us at{' '}
       <a
-        href="mailto:contact@alterclass.io?subject=Question%20about%20MyPlantShop"
-        className="underline text-rose-500"
+        href="https://alterclass.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-500 hover:text-current"
       >
-        contact@alterclass.io
+        Made with{' '}
+        <HeartIcon className="inline-block w-4 h-4 -mt-1 text-red-600 animate-pulse" />{' '}
+        by AlterClass.io
       </a>
     </p>
   </footer>

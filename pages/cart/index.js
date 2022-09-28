@@ -31,7 +31,7 @@ const Cart = () => {
   return (
     <>
       <Head>
-        <title>My Cart | AlterClass</title>
+        <title>My asdasd Cart | AlterClass</title>
       </Head>
       <div className="container xl:max-w-screen-xl mx-auto py-12 px-6">
         {cartCount > 0 ? (
